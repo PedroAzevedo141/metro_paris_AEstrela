@@ -6,6 +6,10 @@ class Mapa:
     def __init__(self, estacao_final):
         self.estacao_final = estacao_final-1
         
+    def estacoesAdjacentes(self, estacao01, estacao02, valor):
+        estacao01.addEstacaoAdjacente(Adjacente(estacao02, valor))
+        estacao02.addEstacaoAdjacente(Adjacente(estacao01, valor))
+
     def criarMapa(self):
     
         matriz_estacoes = [
@@ -41,26 +45,26 @@ class Mapa:
         self.E14 = Estacao("E14", matriz_estacoes[self.estacao_final][13])
         
         #Linha Azul
-        self.E1.addEstacaoAdjacente(Adjacente(self.E2, 10))
-        self.E4.addEstacaoAdjacente(Adjacente(self.E5, 13))
-        self.E2.addEstacaoAdjacente(Adjacente(self.E3, 8.5))
-        self.E3.addEstacaoAdjacente(Adjacente(self.E4, 6.3))
-        self.E5.addEstacaoAdjacente(Adjacente(self.E6, 3))
+        self.estacoesAdjacentes(self.E1, self.E2, 10)
+        self.estacoesAdjacentes(self.E2, self.E3, 8.5)
+        self.estacoesAdjacentes(self.E3, self.E4, 6.3)
+        self.estacoesAdjacentes(self.E4, self.E5, 13)
+        self.estacoesAdjacentes(self.E5, self.E6, 3)
         
         #Linha Vermelha
-        self.E11.addEstacaoAdjacente(Adjacente(self.E9, 12.2))
-        self.E9.addEstacaoAdjacente(Adjacente(self.E3, 9.4))
-        self.E3.addEstacaoAdjacente(Adjacente(self.E13, 18.7))
+        self.estacoesAdjacentes(self.E11, self.E9, 12.2)
+        self.estacoesAdjacentes(self.E9, self.E3, 9.4)
+        self.estacoesAdjacentes(self.E3, self.E13, 18.7)
 
         #Linha Verde
-        self.E12.addEstacaoAdjacente(Adjacente(self.E8, 6.4))
-        self.E8.addEstacaoAdjacente(Adjacente(self.E4, 15.3))
-        self.E4.addEstacaoAdjacente(Adjacente(self.E13, 12.8))
-        self.E13.addEstacaoAdjacente(Adjacente(self.E14, 5.1))
+        self.estacoesAdjacentes(self.E12, self.E8, 6.4)
+        self.estacoesAdjacentes(self.E8, self.E4, 15.3)
+        self.estacoesAdjacentes(self.E4, self.E13, 12.8)
+        self.estacoesAdjacentes(self.E13, self.E14, 5.1)
 
         #Linha Amarela
-        self.E10.addEstacaoAdjacente(Adjacente(self.E2, 3.5))
-        self.E2.addEstacaoAdjacente(Adjacente(self.E9, 10))
-        self.E9.addEstacaoAdjacente(Adjacente(self.E8, 9.6))
-        self.E8.addEstacaoAdjacente(Adjacente(self.E5, 30))
-        self.E5.addEstacaoAdjacente(Adjacente(self.E7, 2.4))
+        self.estacoesAdjacentes(self.E10, self.E2, 3.5)
+        self.estacoesAdjacentes(self.E2, self.E9, 10)
+        self.estacoesAdjacentes(self.E9, self.E8, 9.6)
+        self.estacoesAdjacentes(self.E8, self.E5, 30)
+        self.estacoesAdjacentes(self.E5, self.E7, 2.4)
