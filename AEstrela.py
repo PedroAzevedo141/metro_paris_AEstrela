@@ -16,9 +16,10 @@ class AEstrela:
             self.achou = True
         else:
             self.cidadesVisitadas.append(atual)
-            print("Estações Adjacentes: ")
+            print("Estações Adjacentes:\n")
             for a in atual.adjacentes:
-                print('{} - {}'.format(a.estacao.nome, a.distanciaAEstrela))
+                print('Estação: {} - F(n): {}'.format(a.estacao.nome, a.distanciaAEstrela))
+                print('Fn = Gn + Hn = {} + {} = {}\n'.format(a.estacao.distanciaObjetivo, a.distancia, a.distanciaAEstrela))
                 if a.estacao.visitado == False:
                     a.estacao.visitado = True
                     self.fronteira.append(a)
@@ -43,10 +44,10 @@ class AEstrela:
                 
 from Mapa import Mapa
 
-mapa = Mapa(1)
+mapa = Mapa(14)
 mapa.criarMapa()
 aestrela = AEstrela(mapa.E14)
-aestrela.buscar(mapa.E1)
+aestrela.buscar(mapa.E6)
 print("Cidades Visitadas: ")
 for cidades in aestrela.cidadesVisitadas:
     print(cidades.nome)
