@@ -23,10 +23,12 @@ class AEstrela:
                 if a.estacao.visitado == False:
                     a.estacao.visitado = True
                     self.fronteira.append(a)
+                    a.estacao.pai = atual
                 else:
                     for estacoes in self.fronteira:
                         if estacoes.estacao == a.estacao:
                             estacoes.distanciaAEstrela = a.distanciaAEstrela
+                            a.estacao.pai = atual
             self.fronteira = sorted(self.fronteira, key=lambda a: a.distanciaAEstrela)
 
             pause = input("...")
@@ -47,7 +49,16 @@ from Mapa import Mapa
 mapa = Mapa(14)
 mapa.criarMapa()
 aestrela = AEstrela(mapa.E14)
-aestrela.buscar(mapa.E6)
+aestrela.buscar(mapa.E1)
 print("Cidades Visitadas: ")
 for cidades in aestrela.cidadesVisitadas:
     print(cidades.nome)
+    
+print("-=-=-=-=-=-=-=-")
+print("Melhor Caminho: ")
+print("-=-=-=-=-=-=-=-")
+estacao = mapa.E14
+while estacao != None:
+    print(estacao.nome)
+    estacao = estacao.pai
+
